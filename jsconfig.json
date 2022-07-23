@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "jsx": "react-native",
+    "checkJs": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "commonjs",
+    "baseUrl": "src"
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "build",
+    ".vscode",
+    "coverage",
+    ".npm",
+    ".yarn"
+  ],
+  "typeAcquisition": {
+    "enable": true,
+    "include": [
+      "react",
+      "react-native",
+      "react-dom",
+      "jest",
+      "testing-library__jest-dom"
+    ]
+  }
+}
