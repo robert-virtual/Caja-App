@@ -1,6 +1,6 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Pressable } from "react-native-web";
+import { FlatList, StyleSheet, Text} from "react-native";
+import { Pressable } from "react-native";
 const pages = {
   Monedas: "Monedas",
   DetalleAperturaCaja: "Detalle Apertura Caja",

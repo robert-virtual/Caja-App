@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
+    "jsx": "react-native",
     "checkJs": true,
-    "jsx":"react-native"
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "target": "es2020",
+    "lib":[
+      "ES2015"
+    ],
     "module": "es2015",
     "baseUrl": "src"
   },
@@ -21,6 +24,7 @@
     "enable": true,
     "include": [
       "react",
+      "react-native",
       "react-dom",
       "jest",
       "testing-library__jest-dom"

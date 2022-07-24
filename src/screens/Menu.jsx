@@ -5,6 +5,7 @@ import { DetalleAperturaCaja } from './DetalleAperturaCaja';
 import { DetalleCierreCaja } from './DetalleCierreCaja';
 import { DetalleCierreCajaPos } from './DetalleCierreCajaPos';
 import { Inicio } from './Inicio';
+import { Moneda } from './Moneda';
 const Stack = createNativeStackNavigator()
 
 export function Menu() {
@@ -21,6 +22,8 @@ export function Menu() {
       <Stack.Screen
         name="DetalleCierreCajaPos"
         component={DetalleCierreCajaPos} />
+      <Stack.Screen name="AgregarMoneda" component={Moneda} />
+      <Stack.Screen name="Moneda" component={Moneda} />
     </Stack.Navigator>
   );
 }

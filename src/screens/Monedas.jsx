@@ -1,12 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { API_URL } from '../constantes';
+import React, { useEffect, useState } from 'react';
+import { Alert, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FloatingBtn } from '../components/FloatingBtn';
+import { AntDesign } from '@expo/vector-icons';
 
-export function Monedas() {
+export function Monedas({ navigation }) {
+  useEffect(() => {
+    fetchMonedas()
+  }, [])
+  const [monedas, setMonedas] = useState([])
+  const [refreshing, setreFreshing] = useState(false)
+  async function fetchMonedas(nombre = '') {
+    try {
+      setreFreshing(true)
+      const res = await fetch(`${API_URL}/monedas?nombre=${buscar}`)
+      const { data } = await res.json()
+      setreFreshing(false)
+      setMonedas(data)
+      return true
+    } catch (error) {
+      setreFreshing(false)
+      Alert.alert("Ups ha habido un error. Vuelve a intentar mas tarde")
+    }
+  }
+  const [buscar, setBuscar] = useState('')
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <TextInput
+        style={{ margin: 15 }}
+        onChangeText={setBuscar}
+        value={buscar}
+        placeholder="Buscar"
+        keyboardType={"web-search"}
+        onSubmitEditing={() => fetchMonedas(buscar)}
+      />
+      <FlatList
+        data={monedas}
+        keyExtractor={(item) => item.idregistro}
+        refreshing={refreshing}
+        onRefresh={fetchMonedas}
+        renderItem={({ item }) => (
+          <Pressable
+            onPress={() => navigation.navigate("Moneda", item)}
+            style={styles.item}>
+            <Text> {item.nombre}, Id: {item.idregistro}</Text>
+          </Pressable>
+        )}
+      />
+      <FloatingBtn
+        onPress={() => navigation.navigate("AgregarMoneda")}>
+        <AntDesign name="plus" size={24} color="white" />
+      </FloatingBtn>
     </View>
   );
 }
@@ -14,8 +59,10 @@ export function Monedas() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  item: {
+    padding: 10,
+    backgroundColor: "#fff",
+    margin: 5
   },
 });
