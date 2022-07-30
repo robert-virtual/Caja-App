@@ -38,6 +38,7 @@ export function Moneda({ navigation, route }) {
       }
       setMoneda(monedaDefault)
     } catch (error) {
+      console.warn(error)
       Alert.alert("Ups ha habido un problema. Intenta mas tarde")
     }
   }

@@ -22,6 +22,7 @@ export function Monedas({ navigation,route }) {
       return true
     } catch (error) {
       setreFreshing(false)
+      console.warn(error)
       Alert.alert("Ups ha habido un error. Vuelve a intentar mas tarde")
     }
   }

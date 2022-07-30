@@ -50,6 +50,7 @@ export function DetalleAperturaCaja({ navigation, route }) {
       }
       setDetalle(detalleDefault)
     } catch (error) {
+      console.warn(error)
       Alert.alert("Ups ha habido un problema. Intenta mas tarde")
     }
   }
