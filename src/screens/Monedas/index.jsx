@@ -1,13 +1,15 @@
-import { API_URL } from '../constantes';
+import { API_URL } from '../../constantes';
 import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { FloatingBtn } from '../components/FloatingBtn';
+import { FloatingBtn } from '../../components/FloatingBtn';
 import { AntDesign } from '@expo/vector-icons';
+export { Moneda } from './Moneda';
 
-export function Monedas({ navigation }) {
+
+export function Monedas({ navigation,route }) {
   useEffect(() => {
     fetchMonedas()
-  }, [])
+  }, [route.params])
   const [monedas, setMonedas] = useState([])
   const [refreshing, setreFreshing] = useState(false)
   async function fetchMonedas(nombre = '') {

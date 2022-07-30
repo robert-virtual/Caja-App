@@ -1,9 +1,9 @@
-import { API_URL } from '../constantes';
+import { API_URL } from '../../constantes';
 import { Entypo } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import React, { useReducer } from 'react';
-import { StyleSheet, Text, TextInput, View, Alert } from 'react-native';
-import { FloatingBtn } from '../components/FloatingBtn';
+import { StyleSheet, Text, TextInput, View, Alert, Pressable } from 'react-native';
+import { FloatingBtn } from '../../components/FloatingBtn';
 
 const monedaDefault = {
   idregistro: 0,
@@ -14,7 +14,7 @@ const monedaDefault = {
   nacional: 0,
 }
 
-export function Moneda({ route }) {
+export function Moneda({ navigation, route }) {
   const [moneda, setMoneda] = useReducer((prevState, newState) => {
     return {
       ...prevState,
@@ -32,13 +32,31 @@ export function Moneda({ route }) {
         }
       })
 
-      Alert.alert(`Moneda ${route.params ?"Actualizada":"Guardada"} con exito`)
+      Alert.alert(`Moneda ${route.params ? "Actualizada" : "Guardada"} con exito`)
       if (route.params) {
-       return  
+        return
       }
       setMoneda(monedaDefault)
     } catch (error) {
       Alert.alert("Ups ha habido un problema. Intenta mas tarde")
+    }
+  }
+  async function eliminarMoneda() {
+    try {
+      await fetch(`${API_URL}/monedas/${moneda.idregistro}`, {
+        method: "DELETE",
+      })
+      Alert.alert("Eliminar Moneda", "Moneda eliminda exitosamente")
+      navigation.navigate({
+        name: "Monedas",
+        params: { refresh: true },
+        merge: true
+      })
+
+    } catch (error) {
+      console.error(error)
+      Alert.alert("Eliminar Moneda", "Ups ha habido un error al eliminar Moneda. Intenta mas tarde")
+
     }
   }
   return (
@@ -87,6 +105,12 @@ export function Moneda({ route }) {
         value={moneda.nacional}
         keyboardType='numeric'
       />
+      { route.params && 
+        <Pressable style={styles.label} onPress={eliminarMoneda}>
+          <Text style={styles.redText}>Eliminar</Text>
+        </Pressable>
+
+      }
       <FloatingBtn onPress={crearMoneda}>
         <Entypo name="save" size={24} color="white" />
       </FloatingBtn>
@@ -112,5 +136,9 @@ const styles = StyleSheet.create({
   label: {
     marginStart: 15,
     fontSize: 15
+  },
+  redText: {
+    color: "#d63031",
+    fontSize: 17
   }
 });

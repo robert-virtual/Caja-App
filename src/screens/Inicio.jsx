@@ -3,9 +3,9 @@ import { FlatList, StyleSheet, Text} from "react-native";
 import { Pressable } from "react-native";
 const pages = {
   Monedas: "Monedas",
-  DetalleAperturaCaja: "Detalle Apertura Caja",
-  DetalleCierreCaja: "Detalle Cierre Caja",
-  DetalleCierreCajaPos: "Detalle Cierre CajaPos"
+  DetallesAperturaCaja: "Detalle Apertura Caja",
+  DetallesCierreCaja: "Detalle Cierre Caja",
+  DetallesCierreCajaPos: "Detalle Cierre CajaPos"
 }
 
 export function Inicio({navigation}) {
