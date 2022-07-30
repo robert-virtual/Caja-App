@@ -2,7 +2,7 @@ import { API_URL } from '../../constantes';
 import { Entypo } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import React, { useReducer } from 'react';
-import { StyleSheet, Text, TextInput, View, Alert, Pressable } from 'react-native';
+import { StyleSheet, Text, TextInput, Alert, Pressable, ScrollView } from 'react-native';
 import { FloatingBtn } from '../../components/FloatingBtn';
 
 const monedaDefault = {
@@ -61,7 +61,7 @@ export function Moneda({ navigation, route }) {
     }
   }
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.titulo}>{route.params ? 'Editar' : 'Agregar'} Moneda</Text>
       <Text style={styles.label}>Id Registro</Text>
       <TextInput
@@ -116,7 +116,7 @@ export function Moneda({ navigation, route }) {
         <Entypo name="save" size={24} color="white" />
       </FloatingBtn>
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
 

@@ -1,1 +1,5 @@
-export const API_URL= "https://10.0.2.2:3000/api"
+// import { Platform } from "react-native"
+export const API_URL = "https://caja-progra-movil.herokuapp.com/api"
+// export const API_URL = Platform.OS == "web"
+//   ?"http://localhost:3000/api"
+//   :"http://10.0.2.2:3000/api"
